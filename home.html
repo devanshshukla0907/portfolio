@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devansh Shukla | FinTech Professional</title>
+    <style>
+    /* Add this CSS for the Recommendations page */
+        .recommendations {
+            background-color: white;
+            padding: 5rem 0;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .recommendation-card {
+            background-color: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .recommendation-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .recommendation-card ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendation-card ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .recommendation-card ul li a:hover {
+            text-decoration: underline;
+        }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --tertiary-color: #e74c3c;
+            --background-color: #f5f5f5;
+            --text-color: #333;
+            --light-text: #f5f5f5;
+            --box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--light-text);
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--tertiary-color);
+            color: var(--light-text);
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-right: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--light-text);
+            background-color: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* About Section */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .about {
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        /* Experience Section */
+        .experience {
+            background-color: var(--background-color);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 1rem;
+            position: relative;
+            width: 45%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            top: 45%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 55%;
+        }
+        
+        .left::after {
+            right: -12px;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-item h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .timeline-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: normal;
+        }
+        
+        .timeline-item ul {
+            padding-left: 1.5rem;
+        }
+        
+        /* Projects Section */
+        .projects {
+            background-color: white;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--background-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            font-size: 2rem;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .project-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+        
+        .tag {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        
+        /* Blog Section */
+        .blog {
+            background-color: var(--background-color);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .blog-date {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .read-more {
+            align-self: flex-start;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .read-more:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .view-all-blogs {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        /* Skills Section */
+        .skills {
+            background-color: var(--background-color);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+        
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-list li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        /* Education Section */
+        .education {
+            background-color: white;
+        }
+        
+        .education-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .education-card {
+            background-color: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+        
+        .education-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+        
+        /* Stock Trading Animation */
+        .chart-container {
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        
+        .stock-chart {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .chart-bar {
+            flex: 1;
+            margin: 0 1px;
+            background-color: var(--secondary-color);
+            animation: chart-animation 3s infinite alternate;
+        }
+        
+        @keyframes chart-animation {
+            0% {
+                height: calc(10% + var(--i) * 5%);
+            }
+            100% {
+                height: calc(30% + var(--i) * 6%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">DS</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#recommendations">Recommendations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Devansh Shukla</h1>
+            <p>ML Engineer & Financial Technologist</p>
+            <div class="chart-container">
+                <div class="stock-chart">
+                    <div class="chart-bar" style="--i: 1;"></div>
+                    <div class="chart-bar" style="--i: 3;"></div>
+                    <div class="chart-bar" style="--i: 5;"></div>
+                    <div class="chart-bar" style="--i: 2;"></div>
+                    <div class="chart-bar" style="--i: 4;"></div>
+                    <div class="chart-bar" style="--i: 6;"></div>
+                    <div class="chart-bar" style="--i: 4;"></div>
+                    <div class="chart-bar" style="--i: 2;"></div>
+                    <div class="chart-bar" style="--i: 5;"></div>
+                    <div class="chart-bar" style="--i: 3;"></div>
+                    <div class="chart-bar" style="--i: 7;"></div>
+                    <div class="chart-bar" style="--i: 4;"></div>
+                    <div class="chart-bar" style="--i: 6;"></div>
+                    <div class="chart-bar" style="--i: 3;"></div>
+                    <div class="chart-bar" style="--i: 5;"></div>
+                </div>
+            </div>
+            <p>Bridging the gap between finance and technology</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/devanshshukla0907" target="_blank" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets\my.jpg" alt="placeholder" />
+                </div>
+                <div class="about-text">
+                    <h2>ML Engineer & Financial Technologist</h2>
+                    <p>
+                        I'm a versatile professional with a strong background in machine learning, data science, and finance. 
+                        Currently pursuing dual degrees in Computer Science Engineering at BML Munjal University and Data Science & Applications at IIT Madras, 
+                        I'm passionate about developing innovative solutions at the intersection of technology and finance.
+                    </p>
+                    <p>
+                        With experience in AI-driven applications and a keen interest in financial markets, I specialize in creating 
+                        machine learning models for financial analysis, risk assessment, and algorithmic trading. My goal is to leverage 
+                        cutting-edge technology to solve complex financial problems and create value through data-driven insights.
+                    </p>
+                    <p>
+                        Beyond technology, I'm a national-level boxer, which has instilled in me discipline, determination, and a 
+                        competitive spirit that I bring to every project I undertake.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <h3>Tech Lead</h3>
+                    <h4>Smart Eye | Jan 2025 - Present | Gurgaon, India</h4>
+                    <ul>
+                        <li>Leading the development of an AI-driven smart blind stick integrating computer vision and IoT technologies.</li>
+                        <li>Designed and implemented object detection using a camera module, enabling real-time identification of obstacles and hazards.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item right">
+                    <h3>AI and ML Intern</h3>
+                    <h4>Smart Eye | Oct 2023 - Dec 2023 | Gurgaon, India</h4>
+                    <ul>
+                        <li>Contributed to the prototyping of a smart blind stick by integrating a camera for object detection using machine learning models.</li>
+                        <li>Conducted research and development on ultrasonic sensor data processing for precise obstacle mapping.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image"><img src="/api/placeholder/400/320" alt="placeholder" /></div>
+                    <div class="project-content">
+                        <h3><a href="https://github.com/devanshshukla0907/STOCKS_DASHBOARD_WITH_STREAMLIT">Stocks Dashboard</a></h3>
+                        <p>
+                            A comprehensive Streamlit-based dashboard for stock market analysis featuring visualization of adjusted closing prices, 
+                            computation of key metrics (returns, risk-adjusted return), and technical analysis using various indicators.
+                        </p>
+                        <p>
+                            Integrated fundamental analysis via the Alpha Vantage API and real-time news sentiment analysis to provide comprehensive market insights.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Streamlit</span>
+                            <span class="tag">Financial Analysis</span>
+                            <span class="tag">Data Visualization</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="/api/placeholder/400/320" alt="placeholder" /></div>
+                    <div class="project-content">
+                        <h3><a href="https://colab.research.google.com/drive/1Sju2HfqhWM1DOOMlP7ZK1_GW--Djg39R?usp=sharing">Loan Default Prediction</a></h3>
+                        <p>
+                            Designed a hybrid ensemble approach combining boosting and voting techniques to enhance prediction accuracy and reduce overfitting in loan default prediction.
+                        </p>
+                        <p>
+                            Conducted data preprocessing, feature engineering, and hyperparameter tuning to optimize model performance for financial risk assessment.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Scikit-Learn</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Financial Risk</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="/api/placeholder/400/320" alt="placeholder" /></div>
+                    <div class="project-content">
+                        <h3><a href="https://core-electronics.com.au/guides/object-identify-raspberry-pi/">Cradle Sensor</a></h3>
+                        <p>
+                            Developed a smart cradle sensor system leveraging Raspberry Pi and Machine learning to monitor infant activity and ensure safety.
+                        </p>
+                        <p>
+                            Implemented object detection and face detection using OpenCV to monitor infant presence and identify caregivers, enhancing the cradle sensor's safety and functionality.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Raspberry Pi</span>
+                            <span class="tag">OpenCV</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 class="section-title">My Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="assets/OIP.jpg" alt="Algorithmic Trading Blog" />
+                    </div>
+                    <div class="blog-content">
+                        <h3>Building a Stock Market Dashboard with Streamlit</h3>
+                        <div class="blog-date">January 8, 2025</div>
+                        <div class="blog-excerpt">
+                            <p>A step-by-step tutorial on how I built a comprehensive stock analysis dashboard using Python and Streamlit. Learn how to integrate market data APIs, implement technical indicators, and create an intuitive user interface...</p>
+                        </div>
+                        <a href="https://medium.com/@devanshshukla0907" class="read-more">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="assets\AI_ENG.jpg" alt="Risk Management Blog" />
+                    </div>
+                    <div class="blog-content">
+                        <h3>A Step-by-Step Guide to Becoming an AI Engineer in 2024</h3>
+                        <div class="blog-date">June 26, 2024</div>
+                        <div class="blog-excerpt">
+                            <p>I am thrilled to share my knowledge on artificial intelligence (AI), which is one of the most exciting fields of this decade. There has never been a better moment to get started with artificial intelligence (AI)...</p>
+                        </div>
+                        <a href="https://medium.com/@devanshshukla0907/a-step-by-step-guide-to-becoming-an-ai-engineer-in-2024-0d3aa95b57d6" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-blogs">
+                <a href="https://medium.com/@devanshshukla0907" class="btn">View All Articles on Medium</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>C++</li>
+                        <li>JavaScript</li>
+                        <li>SQL</li>
+                        <li>HTML/CSS</li>
+                        <li>Java</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Libraries & Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                        <li>Scikit-Learn</li>
+                        <li>Flask</li>
+                        <li>Node.js</li>
+                        <li>Django</li>
+                        <li>Streamlit</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Analytics & ML Skills</h3>
+                    <ul class="skill-list">
+                        <li>Exploratory Data Analysis</li>
+                        <li>Data Visualization</li>
+                        <li>Statistical Analysis</li>
+                        <li>Machine Learning</li>
+                        <li>Tableau</li>
+                        <li>Machine Learning for Trading</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Financial Skills</h3>
+                    <ul class="skill-list">
+                        <li>Financial Modeling</li>
+                        <li>Discounted Cash Flow (DCF)</li>
+                        <li>Valuations</li>
+                        <li>Equity Reports</li>
+                        <li>Trading Strategies</li>
+                        <li>Risk Assessment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-cards">
+                <div class="education-card">
+                    <h3>BML Munjal University</h3>
+                    <h4>Bachelor's in Computer Science Engineering</h4>
+                    <p>Jul 2023 - Present | Gurgaon, India</p>
+                    <p>School of Engineering and Technology</p>
+                    <p>Cumulative GPA: 8.92/10</p>
+                    <p>75% Scholarship recipient for academic excellence</p>
+                </div>
+                <div class="education-card">
+                    <h3>Indian Institute of Technology Madras</h3>
+                    <h4>Bachelor's in Data Science and Applications</h4>
+                    <p>May 2023 - Present | Chennai, India</p>
+                    <p>School of Computing</p>
+                    <p>Cumulative GPA: 7/10</p>
+                </div>
+            </div>
+            
+            <h2 class="section-title" style="margin-top: 3rem;">Certifications</h2>
+            <div class="education-cards">
+                <div class="education-card">
+                    <h3>Finance & Trading</h3>
+                    <ul class="skill-list">
+                        <li><a href="https://www.coursera.org/account/accomplishments/specialization/16U82JCH1VAQ?trk=public_profile_see-credential">Financial Management - Duke University</a></li>
+                        <li><a href="https://www.coursera.org/account/accomplishments/specialization/4POJVNXZZUDX?trk=public_profile_see-credential">Machine Learning For Trading - New York Institute Of Finance</a></li>
+                        <li><a href="https://www.coursera.org/account/accomplishments/specialization/PTDYVU4VNT9P?trk=public_profile_see-credential">Trading Strategies In Emerging Markets - Indian School Of Business</a></li>
+                        <li><a href="https://www.coursera.org/account/accomplishments/specialization/PR8SZ75DZUHL?trk=public_profile_see-credential">Finance Quantitative Modelling for Analysts</a></li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <h3>Technical & AI</h3>
+                    <ul class="skill-list">
+                        <li><a href="https://media.licdn.com/dms/image/v2/D4D2DAQEPHG2uJJZHGQ/profile-treasury-image-shrink_1920_1920/profile-treasury-image-shrink_1920_1920/0/1701495885487?e=1742396400&v=beta&t=6JM_5CtyTHpe3486ud9mV52hGR8z5XR1UnMEeBbrdgE">Certificate of Mathworks Virtual Internship on AI</a></li>
+                        <li><a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Cognizant/5N2ygyhzMWjKQmgCK_Cognizant_An2XSEAdrbwjBotEE_1704200199743_completion_certificate.pdf?trk=public_profile_see-credential">Cognizant AI Job Simulation - Forage</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="projects">
+        <div class="container">
+            <h2 class="section-title">Achievements</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <h3>AI in Finance Hackathon Winner</h3>
+                        <p>
+                            Won the AI in Finance Hackathon at Sardar Patel Institute of Technology, Mumbai, demonstrating
+                            exceptional skills in financial modeling and machine learning.
+                        </p>
+                        <a href="achievements-details.html" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section id="recommendations" class="recommendations">
+        <div class="container">
+            <h2 class="section-title">Recommendations</h2>
+            <div class="recommendations-grid">
+                <div class="recommendation-card">
+                    <h3>Blogs</h3>
+                    <ul>
+                        <li><a href="https://quantgirl.blog/quant-project/" target="_blank">Quant Roadmap</a></li>
+                        <li><a href="https://medium.com/@ctanny/5-python-packages-that-made-my-quantitative-finance-projects-that-much-easier-and-better-360505401d44" target="_blank">Python Packages</a></li>
+                    </ul>
+                </div>
+                <div class="recommendation-card">
+                    <h3>Books</h3>
+                    <ul>
+                        <li><a href="http://14.139.161.31/OddSem-0822-1122/Hands-On_Machine_Learning_with_Scikit-Learn-Keras-and-TensorFlow-2nd-Edition-Aurelien-Geron.pdf" target="_blank">Hands On Machine Learning with Scikit Learn Keras and TensorFlow</a></li>
+                        <li><a href="https://drive.google.com/file/d/1bQJQaYajfj_nC0aXB6ShJK-PWogxvyrr/view" target="_blank">JAVA The Complete Reference</a></li>
+                    </ul>
+                </div>
+                <div class="recommendation-card">
+                    <h3>Courses</h3>
+                    <ul>
+                        <li><a href="https://youtube.com/playlist?list=PL3uUjzLk6PukmKZU91uTBhDjv1EDxql8-&feature=shared" target="_blank">NISM 15 Research Analyst</a></li>
+                        <li><a href="https://pll.harvard.edu/course/cs50s-introduction-artificial-intelligence-python" target="_blank">CS50's Introduction to Artificial Intelligence with Python</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+     <!-- Contact Section -->
+     <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:your.email@example.com">devanshshukla0907@gmail.com</a></p>
+                <p>                                                                                </p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/devansh-shukla-7b521b2a3" target="_blank">LinkedIn Profile</a></p>
+                <p>                                                                                </p>
+                <p>GitHub: <a href="https://github.com/devanshshukla0907" target="_blank">GitHub Profile</a></p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+                    
